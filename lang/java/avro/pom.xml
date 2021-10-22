@@ -27,6 +27,7 @@
 
   <artifactId>avro</artifactId>
 
+  <version>1.10.0.6p-v2</version>
   <name>${project.artifactId} - ${project.version}</name>
   <url>http://avro.apache.org</url>
   <description>Avro core components</description>
@@ -136,30 +137,30 @@
   </profiles>
 
   <dependencies>
-    <dependency>
-      <groupId>org.spf4j.avro</groupId>
-      <artifactId>core-schema</artifactId>
-      <version>0.19</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.avro</groupId>
-          <artifactId>avro</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.spf4j</groupId>
-      <artifactId>avro-logical-types-fork</artifactId>
-      <version>1.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.spf4j</groupId>
-      <artifactId>spf4j-slf4j-test</artifactId>
-      <scope>test</scope>
-      <version>8.9.1</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.spf4j.avro</groupId>-->
+<!--      <artifactId>core-schema</artifactId>-->
+<!--      <version>0.23</version>-->
+<!--      <scope>test</scope>-->
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>org.apache.avro</groupId>-->
+<!--          <artifactId>avro</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.spf4j</groupId>-->
+<!--      <artifactId>avro-logical-types-fork</artifactId>-->
+<!--      <version>1.1</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.spf4j</groupId>-->
+<!--      <artifactId>spf4j-slf4j-test</artifactId>-->
+<!--      <scope>test</scope>-->
+<!--      <version>8.9.1</version>-->
+<!--    </dependency>-->
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-core</artifactId>

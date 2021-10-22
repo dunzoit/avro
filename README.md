@@ -186,3 +186,13 @@ will serialize in json to:
 
  for more info see: https://bintray.com/zolyfarkas/core/avro
 
+# Building jars
+
+Run `./build.sh docker` and once inside docker container run `mvn -P dist package -DskipTests javadoc:aggregate -Denforcer.skip`
+
+Jars will be available in lang/java/target
+
+Run `mvn deploy` to upload them to Google Artifact Registry
+
+Make sure to change the version in lang/java/avro pom.xml. Otherwise the upload will fail
+

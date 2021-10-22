@@ -17,6 +17,29 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <repositories>
+    <repository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://asia-south1-maven.pkg.dev/prod-data-platform/dunzo-extended-avro</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://asia-south1-maven.pkg.dev/prod-data-platform/dunzo-extended-avro</url>
+    </snapshotRepository>
+    <repository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://asia-south1-maven.pkg.dev/prod-data-platform/dunzo-extended-avro</url>
+    </repository>
+  </distributionManagement>
 
   <prerequisites>
     <maven>2.2.1</maven>
@@ -29,7 +52,7 @@
   </parent>
 
   <groupId>org.apache.avro</groupId>
-  <artifactId>avro-toplevel</artifactId>
+  <artifactId>dunzo-avro-toplevel</artifactId>
   <version>1.10.0.6p</version>
   <packaging>pom</packaging>
 
@@ -57,37 +80,12 @@
     <checkstyle-plugin.version>3.1.1</checkstyle-plugin.version>
   </properties>
 
-
-    <distributionManagement>
-       <repository>
-         <id>github</id>
-         <name>GitHub zolyfarkas avro Apache Maven Packages</name>
-         <url>https://maven.pkg.github.com/zolyfarkas/avro</url>
-       </repository>
-       <snapshotRepository>
-         <id>github</id>
-         <name>GitHub zolyfarkas avro Apache Maven Packages</name>
-         <url>https://maven.pkg.github.com/zolyfarkas/avro</url>
-       </snapshotRepository>
-    </distributionManagement>
-
-
-
-
   <modules>
-    <module>dev-tools</module>
+<!--    <module>dev-tools</module>-->
     <module>lang/java</module>
   </modules>
 
 
-  <scm>
-    <connection>scm:git:https://github.com/zolyfarkas/avro.git</connection>  
-    <developerConnection>scm:git:https://github.com/zolyfarkas/avro.git</developerConnection>
-    <url>https://github.com/zolyfarkas/avro/</url>
-    <tag>avro-toplevel-1.10.0.6p</tag>
-  </scm>  
-
-    
 
   <issueManagement>
     <system>jira</system>
@@ -121,56 +119,63 @@
   </mailingLists>
 
   <build>
-      <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-release-plugin</artifactId>
-              <version>2.5.3</version>
-              <configuration>
-                <useReleaseProfile>false</useReleaseProfile>
-                <goals>deploy</goals>
-                <arguments combine.self="override" />
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-surefire-plugin</artifactId>
-              <configuration>
-                <trimStackTrace>false</trimStackTrace>
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <configuration>
-                  <skip>true</skip>
-              </configuration>              
-            </plugin>
+    <extensions>
+      <extension>
+        <groupId>com.google.cloud.artifactregistry</groupId>
+        <artifactId>artifactregistry-maven-wagon</artifactId>
+        <version>2.1.1</version>
+      </extension>
+    </extensions>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+          <configuration>
+            <useReleaseProfile>false</useReleaseProfile>
+            <goals>deploy</goals>
+            <arguments combine.self="override" />
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <trimStackTrace>false</trimStackTrace>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
 
-          </plugins>
-      </pluginManagement>
+      </plugins>
+    </pluginManagement>
     <plugins>
-       <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <configuration>
-                <skip>true</skip>              
-            </configuration>
-       </plugin>
-       <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-release-plugin</artifactId>
-            <version>2.5.3</version>
-            <configuration>
-                   <autoVersionSubmodules>true</autoVersionSubmodules>
-                   <checkModificationExcludes>
-                       <checkModificationExclude>**/lang/csharp/**</checkModificationExclude>
-                       <checkModificationExclude>**/lang/php/**</checkModificationExclude>
-                   </checkModificationExcludes>
-            </configuration>
-       </plugin>   
-  <plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <checkModificationExcludes>
+            <checkModificationExclude>**/lang/csharp/**</checkModificationExclude>
+            <checkModificationExclude>**/lang/php/**</checkModificationExclude>
+          </checkModificationExcludes>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
         <version>${enforcer-plugin.version}</version>
@@ -218,7 +223,7 @@
               <rules>
                 <bannedDependencies>
                   <excludes>
-                    <!-- 
+                    <!--
                     <exclude>com.google.code.findbugs:*</exclude>
                     -->
                     <exclude>org.hamcrest:hamcrest-all</exclude>
@@ -236,41 +241,41 @@
           </dependency>
         </dependencies>
       </plugin>
-                <plugin> <!-- com.github.spotbugs:spotbugs-maven-plugin -->
-                    <groupId>com.github.spotbugs</groupId>
-                    <artifactId>spotbugs-maven-plugin</artifactId>
-                    <version>3.1.10</version>
-                    <configuration>
-                        <skip>true</skip>
-                        <failOnError>false</failOnError>
-                        <effort>Max</effort><!-- Min, Default, Max -->
-                        <threshold>Exp</threshold><!-- High, Default, Low, Ignore -->
-                        <xmlOutput>true</xmlOutput>
-                        <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
-                        <excludeFilterFile>${findbugs.excludeFilterFile}</excludeFilterFile>
-                        <includeTests>true</includeTests>
-                        <plugins>
-                            <plugin>
-                                <groupId>com.mebigfatguy.fb-contrib</groupId>
-                                <artifactId>fb-contrib</artifactId>
-                                <version>7.4.3.sb</version>
-                            </plugin>
-                            <plugin>
-                                <groupId>com.h3xstream.findsecbugs</groupId>
-                                <artifactId>findsecbugs-plugin</artifactId>
-                                <version>1.8.0</version>
-                            </plugin>
-                        </plugins>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>post-integration-test</phase>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+      <plugin> <!-- com.github.spotbugs:spotbugs-maven-plugin -->
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.10</version>
+        <configuration>
+          <skip>true</skip>
+          <failOnError>false</failOnError>
+          <effort>Max</effort><!-- Min, Default, Max -->
+          <threshold>Exp</threshold><!-- High, Default, Low, Ignore -->
+          <xmlOutput>true</xmlOutput>
+          <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+          <excludeFilterFile>${findbugs.excludeFilterFile}</excludeFilterFile>
+          <includeTests>true</includeTests>
+          <plugins>
+            <plugin>
+              <groupId>com.mebigfatguy.fb-contrib</groupId>
+              <artifactId>fb-contrib</artifactId>
+              <version>7.4.3.sb</version>
+            </plugin>
+            <plugin>
+              <groupId>com.h3xstream.findsecbugs</groupId>
+              <artifactId>findsecbugs-plugin</artifactId>
+              <version>1.8.0</version>
+            </plugin>
+          </plugins>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -351,40 +356,8 @@
               </execution>
             </executions>
             <configuration>
-                <skip>true</skip>
+              <skip>true</skip>
             </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>rat</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>${antrun-plugin.version}</version>
-            <configuration>
-              <target name="rat">
-                <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="build/rat-report.log">
-                  <fileset dir="build/avro-src-${project.version}/" excludesfile="share/rat-excludes.txt" />
-                </rat:report>
-                <condition property="rat.passed">
-                  <isfileselected file="build/rat-report.log">
-                    <containsregexp expression="^0 Unknown Licenses" />
-                  </isfileselected>
-                </condition>
-                <fail unless="rat.passed">Unknown licenses: See build/rat-report.log.</fail>
-              </target>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>org.apache.rat</groupId>
-                <artifactId>apache-rat-tasks</artifactId>
-                <version>${apache-rat-tasks.version}</version>
-              </dependency>
-            </dependencies>
           </plugin>
         </plugins>
       </build>

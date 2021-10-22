@@ -35,8 +35,6 @@ import java.util.ServiceLoader;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.avro.data.DateConverter;
-import org.apache.avro.data.TimeConversions;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.util.CopyOnWriteMap;
 import org.apache.avro.data.Decimal2Converter;
@@ -52,14 +50,14 @@ public final class Conversions {
     Map<String, Conversion<?>> map = new HashMap<>();
     registerConversion(map, new DecimalConverter());
     registerConversion(map, new Decimal2Converter());
-    registerConversion(map, new DateConverter());
+//    registerConversion(map, new DateConverter());
     registerConversion(map, new UUIDConversion());
-    registerConversion(map, new TimeConversions.TimeMicrosConversion());
-    registerConversion(map, new TimeConversions.TimeMillisConversion());
-    registerConversion(map, new TimeConversions.TimestampMicrosConversion());
-    registerConversion(map, new TimeConversions.TimestampMillisConversion());
-    registerConversion(map, new TimeConversions.LocalTimestampMicrosConversion());
-    registerConversion(map, new TimeConversions.LocalTimestampMillisConversion());
+//    registerConversion(map, new TimeConversions.TimeMicrosConversion());
+//    registerConversion(map, new TimeConversions.TimeMillisConversion());
+//    registerConversion(map, new TimeConversions.TimestampMicrosConversion());
+//    registerConversion(map, new TimeConversions.TimestampMillisConversion());
+//    registerConversion(map, new TimeConversions.LocalTimestampMicrosConversion());
+//    registerConversion(map, new TimeConversions.LocalTimestampMillisConversion());
     ServiceLoader<Conversion> factories
              = ServiceLoader.load(Conversion.class);
 
