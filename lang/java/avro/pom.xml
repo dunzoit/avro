@@ -21,13 +21,13 @@
   <parent>
     <artifactId>avro-parent</artifactId>
     <groupId>org.apache.avro</groupId>
-    <version>1.10.0.6p</version>
+    <version>1.10.0.2p</version>
     <relativePath>../</relativePath>
   </parent>
 
   <artifactId>avro</artifactId>
 
-  <version>1.10.0.6p-v2</version>
+  <version>1.10.0.2p-v2</version>
   <name>${project.artifactId} - ${project.version}</name>
   <url>http://avro.apache.org</url>
   <description>Avro core components</description>

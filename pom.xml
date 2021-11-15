@@ -53,7 +53,7 @@
 
   <groupId>org.apache.avro</groupId>
   <artifactId>dunzo-avro-toplevel</artifactId>
-  <version>1.10.0.6p</version>
+  <version>1.10.0.2p</version>
   <packaging>pom</packaging>
 
   <name>${project.artifactId} - ${project.version}</name>
