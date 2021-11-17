@@ -20,12 +20,13 @@
 
   <parent>
     <groupId>org.apache.avro</groupId>
-    <artifactId>avro-toplevel</artifactId>
-    <version>1.10.0.6p</version>
+    <artifactId>dunzo-avro-toplevel</artifactId>
+    <version>1.10.0.2p-v3</version>
     <relativePath>../../</relativePath>
   </parent>
 
   <artifactId>avro-parent</artifactId>
+  <version>1.10.0.2p-v3</version>
   <packaging>pom</packaging>
 
   <name>${project.artifactId} - ${project.version}</name>

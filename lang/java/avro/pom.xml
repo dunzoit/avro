@@ -18,6 +18,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <repositories>
+    <repository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://asia-south1-maven.pkg.dev/prod-data-platform/dunzo-extended-avro</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://asia-south1-maven.pkg.dev/prod-data-platform/dunzo-extended-avro</url>
+    </snapshotRepository>
+    <repository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://asia-south1-maven.pkg.dev/prod-data-platform/dunzo-extended-avro</url>
+    </repository>
+  </distributionManagement>
+
   <parent>
     <artifactId>avro-parent</artifactId>
     <groupId>org.apache.avro</groupId>
@@ -27,7 +51,7 @@
 
   <artifactId>avro</artifactId>
 
-  <version>1.10.0.2p-v2</version>
+  <version>1.10.0.2p-v3</version>
   <name>${project.artifactId} - ${project.version}</name>
   <url>http://avro.apache.org</url>
   <description>Avro core components</description>
@@ -81,6 +105,14 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>

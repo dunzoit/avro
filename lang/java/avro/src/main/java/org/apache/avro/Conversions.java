@@ -21,6 +21,8 @@ package org.apache.avro;
 import java.math.BigDecimal;
 import static java.math.BigDecimal.ROUND_UNNECESSARY;
 import java.math.BigInteger;
+import org.apache.avro.data.DateConverter;
+import org.apache.avro.data.TimeConversions;
 import org.apache.avro.generic.GenericEnumSymbol;
 import org.apache.avro.generic.GenericFixed;
 import org.apache.avro.generic.IndexedRecord;
@@ -53,9 +55,9 @@ public final class Conversions {
 //    registerConversion(map, new DateConverter());
     registerConversion(map, new UUIDConversion());
 //    registerConversion(map, new TimeConversions.TimeMicrosConversion());
-//    registerConversion(map, new TimeConversions.TimeMillisConversion());
+    registerConversion(map, new TimeConversions.TimeMillisConversion());
 //    registerConversion(map, new TimeConversions.TimestampMicrosConversion());
-//    registerConversion(map, new TimeConversions.TimestampMillisConversion());
+    registerConversion(map, new TimeConversions.TimestampMillisConversion());
 //    registerConversion(map, new TimeConversions.LocalTimestampMicrosConversion());
 //    registerConversion(map, new TimeConversions.LocalTimestampMillisConversion());
     ServiceLoader<Conversion> factories
